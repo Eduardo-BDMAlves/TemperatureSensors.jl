@@ -1,0 +1,3 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+TemperatureSensors = "4e0911ad-eb89-46c3-895a-ce894798b498"

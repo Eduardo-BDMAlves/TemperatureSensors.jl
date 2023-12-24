@@ -1,0 +1,7 @@
+name = "TemperatureSensors"
+uuid = "4e0911ad-eb89-46c3-895a-ce894798b498"
+authors = ["Eduardo-BDMAlves <eduardo.alves@polo.ufsc.br>"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1"
