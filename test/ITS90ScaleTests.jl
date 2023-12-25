@@ -4,6 +4,5 @@
 
     sensor = ITS90PT100()
 
-    certificate_values = [0,0]
-
+    certificate_values = [0, 0]
 end

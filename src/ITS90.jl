@@ -5,10 +5,10 @@ struct ITS90ScalePTctes{T}
     C::T
     D::T
 
-    resistance_low
-    resistance_high
-    temperature_low
-    temperature_high
+    resistance_low::Any
+    resistance_high::Any
+    temperature_low::Any
+    temperature_high::Any
 
     function ITS90ScalePTctes()
         A = [
@@ -24,7 +24,7 @@ struct ITS90ScalePTctes{T}
             -0.293_028_65,
             0.044_598_72,
             0.118_686_32,
-            -0.052_481_34
+            -0.052_481_34,
         ]
         B = [
             0.183_324_722,
@@ -42,7 +42,7 @@ struct ITS90ScalePTctes{T}
             -0.029_201_193,
             -0.091_173_542,
             0.001_317_696,
-            0.026_025_526
+            0.026_025_526,
         ]
         C = [
             2.781_572_54,
@@ -54,7 +54,7 @@ struct ITS90ScalePTctes{T}
             0.001_879_82,
             -0.002_044_72,
             -0.000_461_22,
-            0.000_457_24
+            0.000_457_24,
         ]
         D = [
             439.932_854,
@@ -66,7 +66,7 @@ struct ITS90ScalePTctes{T}
             -0.963_864,
             -0.188_732,
             0.191_203,
-            0.049_025
+            0.049_025,
         ]
 
         # resistance_low = Polynomials.Polynomial(A[end:-1:1])
@@ -78,15 +78,13 @@ struct ITS90ScalePTctes{T}
         temperature_low = Polynomials.ImmutablePolynomial(B)
         temperature_high = Polynomials.ImmutablePolynomial(D)
 
-        new{typeof(A)}(
-            A,
+        new{typeof(A)}(A,
             B,
             C,
             D,
             resistance_low,
             resistance_high,
             temperature_low,
-            temperature_high
-        )
+            temperature_high)
     end
 end

@@ -1,8 +1,6 @@
 module TemperatureSensors
 
-
 import Polynomials
-
 
 # Write your package code here.
 
