@@ -8,6 +8,11 @@
 [![PkgEval](https://JuliaCI.github.io/NanosoldierReports/pkgeval_badges/T/TemperatureSensors.svg)](https://JuliaCI.github.io/NanosoldierReports/pkgeval_badges/T/TemperatureSensors.html)
 [![Aqua](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
 
+
+
+This package aims to combine different sensors temperature calculations. For example, with a given resistance and calibration from an RTD it can determine the temperatura in the ITS-90 temperature scale.
+
+
 ## Citing
 
 See [`CITATION.bib`](CITATION.bib) for the relevant reference(s).
