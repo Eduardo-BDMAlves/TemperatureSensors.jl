@@ -12,11 +12,15 @@ struct PT100 <: RTD
 end
 
 struct ITS90PT100 <: RTD
+
+    a5::Real
+    b5::Real
+
     a10::Real
+
     RTPW::Real
 
-    function (RTPW, a10)
-        new(a10,
-            RTPW)
+    function (a5,b5,a10,RTPW)
+        new(a5,b5,a10,RTPW)
     end
 end
