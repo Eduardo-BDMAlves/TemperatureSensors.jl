@@ -8,4 +8,5 @@ Polynomials = "f27b6e38-b328-58d1-80ce-0feddd5e7a45"
 Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d"
 
 [compat]
+Unitful = "1"
 julia = "1.9"
