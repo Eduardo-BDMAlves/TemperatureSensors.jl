@@ -19,7 +19,13 @@ struct ITS90PT100 <: RTD
 
     RTPW::Real
 
+    ITS90_transition_resistance::Real
+
     function ITS90PT100(a5, b5, a10, RTPW)
-        new(a5, b5, a10, RTPW)
+        params = (a5 = a5, b5 = b5, a10 = a10, RTPW = RTPW)
+
+        transition_resistance = resistance(273.16, params)
+
+        new(a5, b5, a10, RTPW, transition_resistance)
     end
 end

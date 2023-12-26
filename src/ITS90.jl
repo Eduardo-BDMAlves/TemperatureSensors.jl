@@ -69,10 +69,6 @@ struct ITS90ScalePTctes{T}
             0.049_025,
         ]
 
-        # resistance_low = Polynomials.Polynomial(A[end:-1:1])
-        # resistance_high = Polynomials.Polynomial(C[end:-1:1])
-        # temperature_low = Polynomials.Polynomial(B[end:-1:1])
-        # temperature_high = Polynomials.Polynomial(D[end:-1:1])
         resistance_low = Polynomials.ImmutablePolynomial(A)
         resistance_high = Polynomials.ImmutablePolynomial(C)
         temperature_low = Polynomials.ImmutablePolynomial(B)

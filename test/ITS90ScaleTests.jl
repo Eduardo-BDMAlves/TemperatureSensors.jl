@@ -1,3 +1,38 @@
+@safetestset "ITS struct test" begin
+    using TemperatureSensors
+    sensor = ITS90PT100(-2.0386711E-2, 3.3068936E-3, -1.9700442E-02, 100.0121)
+
+    trans_temp = temperature(sensor.ITS90_transition_resistance, sensor)
+
+    @test trans_temp ≈ 273.16
+end
+
+@safetestset "ITS temperature extrapolation error" begin
+    using TemperatureSensors
+    sensor = ITS90PT100(-2.0386711E-2, 3.3068936E-3, -1.9700442E-02, 100.0121)
+
+    @testset "High temperature" begin
+        try
+            res = resistance(1000, sensor)
+        catch e
+            @test e == TemperatureSensors.OutOfRangeError()
+        end
+    end
+    @testset "Low temperature" begin
+        try
+            res = resistance(1, sensor)
+        catch e
+            @test e == TemperatureSensors.OutOfRangeError()
+        end
+    end
+    @testset "Low resistante" begin
+        try
+            res = resistance(-1, sensor)
+        catch e
+            @test e == TemperatureSensors.OutOfRangeError()
+        end
+    end
+end
 
 @safetestset "RTD certificated - 1" begin
     using TemperatureSensors
@@ -47,11 +82,18 @@
 
     resistences_computed = map(x -> resistance(x, sensor),
         certificate_values.Ts)
+    temperatures_computed = map(x -> temperature(x, sensor),
+        certificate_values.Rs)
 
     @debug "Resistences computed = $resistences_computed"
 
     @testset "Resistance from temperature" begin
         [@test isapprox(r_certificate, r_computed, atol = 0.03)
          for (r_certificate, r_computed) in zip(certificate_values.Rs, resistences_computed)]
+    end
+    @testset "Temperature from resistance" begin
+        [@test isapprox(T_certificate, T_computed, atol = 0.03)
+         for (T_certificate, T_computed) in zip(certificate_values.Ts,
+            temperatures_computed)]
     end
 end
