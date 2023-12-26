@@ -47,11 +47,17 @@
 
     resistences_computed = map(x -> resistance(x, sensor),
         certificate_values.Ts)
+    temperatures_computed = map(x-> temperature(x, sensor),
+        certificate_values.Rs)
 
     @debug "Resistences computed = $resistences_computed"
 
     @testset "Resistance from temperature" begin
         [@test isapprox(r_certificate, r_computed, atol = 0.03)
          for (r_certificate, r_computed) in zip(certificate_values.Rs, resistences_computed)]
+    end
+    @testset "Temperature from resistance" begin
+        [@test isapprox(T_certificate, T_computed, atol = 0.03)
+         for (T_certificate, T_computed) in zip(certificate_values.Ts, temperatures_computed)]
     end
 end
