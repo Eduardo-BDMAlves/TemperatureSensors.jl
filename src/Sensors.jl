@@ -19,7 +19,7 @@ struct ITS90PT100 <: RTD
 
     RTPW::Real
 
-    function (a5, b5, a10, RTPW)
+    function ITS90PT100(a5, b5, a10, RTPW)
         new(a5, b5, a10, RTPW)
     end
 end
