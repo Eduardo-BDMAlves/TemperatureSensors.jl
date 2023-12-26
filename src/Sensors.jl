@@ -10,3 +10,16 @@ struct ThermocoupleJ <: Thermocouple end
 
 struct PT100 <: RTD
 end
+
+struct ITS90PT100 <: RTD
+    a5::Real
+    b5::Real
+
+    a10::Real
+
+    RTPW::Real
+
+    function ITS90PT100(a5, b5, a10, RTPW)
+        new(a5, b5, a10, RTPW)
+    end
+end

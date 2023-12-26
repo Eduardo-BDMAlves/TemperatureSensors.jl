@@ -16,4 +16,8 @@ using JET
         JET.test_package(TemperatureSensors; target_defined_modules = true)
     end
     # Write your tests here.
+
+    @safetestset "ITS90 RTD tests" begin
+        include("ITS90ScaleTests.jl")
+    end
 end
