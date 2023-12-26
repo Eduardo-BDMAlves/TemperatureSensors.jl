@@ -8,7 +8,9 @@ using JET
     @safetestset "Code quality (Aqua.jl)" begin
         using TemperatureSensors
         using Aqua
-        Aqua.test_all(TemperatureSensors)
+        Aqua.test_all(TemperatureSensors,
+            # stale_deps = (ignore=[:Unitful],),
+            piracies = true)
     end
     @safetestset "Code linting (JET.jl)" begin
         using TemperatureSensors
