@@ -19,6 +19,17 @@ using JET
     end
     # Write your tests here.
 
+    @safetestset "Simple error test" begin
+        using TemperatureSensors
+        thermoJ = TemperatureSensors.ThermocoupleJ()
+
+        try
+            temp = temperature(100.0, thermoJ)
+        catch e
+            @test e == TemperatureSensors.NotImplementerError()
+        end
+    end
+
     @safetestset "ITS90 RTD tests" begin
         include("ITS90ScaleTests.jl")
     end

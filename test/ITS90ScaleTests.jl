@@ -1,3 +1,38 @@
+@safetestset "ITS struct test" begin
+    using TemperatureSensors
+    sensor = ITS90PT100(-2.0386711E-2, 3.3068936E-3, -1.9700442E-02, 100.0121)
+
+    trans_temp = temperature(sensor.ITS90_transition_resistance, sensor)
+
+    @test trans_temp ≈ 273.16
+end
+
+@safetestset "ITS temperature extrapolation error" begin
+    using TemperatureSensors
+    sensor = ITS90PT100(-2.0386711E-2, 3.3068936E-3, -1.9700442E-02, 100.0121)
+
+    @testset "High temperature" begin
+        try
+            res = resistance(1000, sensor)
+        catch e
+            @test e == TemperatureSensors.OutOfRangeError()
+        end
+    end
+    @testset "Low temperature" begin
+        try
+            res = resistance(1, sensor)
+        catch e
+            @test e == TemperatureSensors.OutOfRangeError()
+        end
+    end
+    @testset "Low resistante" begin
+        try
+            res = resistance(-1, sensor)
+        catch e
+            @test e == TemperatureSensors.OutOfRangeError()
+        end
+    end
+end
 
 @safetestset "RTD certificated - 1" begin
     using TemperatureSensors

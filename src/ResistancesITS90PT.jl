@@ -34,7 +34,7 @@ function resistance(temperature::T, params, ctes::ITS90ScalePTctes) where {T}
         return W * params.RTPW
     else
         print("Temperature:", temperature)
-        throw(NotImplementerError())
+        throw(OutOfRangeError())
         return T(-1)
     end
 end
