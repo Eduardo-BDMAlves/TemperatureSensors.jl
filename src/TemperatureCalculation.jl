@@ -57,10 +57,10 @@ See [ITS-90](https://www.nist.gov/system/files/documents/pml/div685/grp01/ITS-90
 
 # Example
 ```jldoctest
-julia>sensor = ITS90PT100(-2.0386711E-2, 3.3068936E-3, -1.9700442E-02, 100.0121)
+julia> sensor = ITS90PT100(-2.0386711E-2, 3.3068936E-3, -1.9700442E-02, 100.0121)
 ITS90PT100(-0.020386711, 0.0033068936, -0.019700442, 100.0121, 100.01209954383037)
 
-julia>temperature(sensor.ITS90_transition_resistance, sensor)
+julia> temperature(sensor.ITS90_transition_resistance, sensor)
 273.1599988338994
 ```
 """
