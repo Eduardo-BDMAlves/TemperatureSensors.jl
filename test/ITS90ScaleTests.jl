@@ -23,10 +23,10 @@
             100,
             140,
             156,
-        ] .+ 273.25,
+        ] .+ 273.15,
         Rs = [
             84.2826,
-            86.6529,
+            86.2528,
             88.2308,
             92.1677,
             96.0934,
@@ -50,6 +50,8 @@
 
     @debug "Resistences computed = $resistences_computed"
 
-    [@test isapprox(r_certificate, r_computed, atol = 0.03)
-     for (r_certificate, r_computed) in zip(certificate_values.Rs, resistences_computed)]
+    @testset "Resistance from temperature" begin
+        [@test isapprox(r_certificate, r_computed, atol = 0.03)
+         for (r_certificate, r_computed) in zip(certificate_values.Rs, resistences_computed)]
+    end
 end
