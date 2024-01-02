@@ -16,7 +16,3 @@ This package aims to combine different sensors temperature calculations. For exa
 ## Citing
 
 See [`CITATION.bib`](CITATION.bib) for the relevant reference(s).
-
-
-
- https://img.shields.io/badge/any%20text-you%20like-blue
