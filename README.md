@@ -1,6 +1,6 @@
 # TemperatureSensors
 
-[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://Eduardo-BDMAlves.github.io/TemperatureSensors.jl/stable/)
+<!-- [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://Eduardo-BDMAlves.github.io/TemperatureSensors.jl/stable/) -->
 [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://Eduardo-BDMAlves.github.io/TemperatureSensors.jl/dev/)
 [![Build Status](https://github.com/Eduardo-BDMAlves/TemperatureSensors.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/Eduardo-BDMAlves/TemperatureSensors.jl/actions/workflows/CI.yml?query=branch%3Amaster)
 [![Coverage](https://codecov.io/gh/Eduardo-BDMAlves/TemperatureSensors.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/Eduardo-BDMAlves/TemperatureSensors.jl)
