@@ -1,7 +1,7 @@
 # TemperatureSensors
 
 <!-- [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://Eduardo-BDMAlves.github.io/TemperatureSensors.jl/stable/) -->
-[![Documentation](https://img.shields.io/badge/docs-blue.svg)](https://Eduardo-BDMAlves.github.io/TemperatureSensors.jl/dev/)
+[![Documentation](https://img.shields.io/badge/Documentation%20-TemperatureSensors.jl%20-blue)](https://Eduardo-BDMAlves.github.io/TemperatureSensors.jl/dev/)
 [![Build Status](https://github.com/Eduardo-BDMAlves/TemperatureSensors.jl/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/Eduardo-BDMAlves/TemperatureSensors.jl/actions/workflows/CI.yml?query=branch%3Amaster)
 [![Coverage](https://codecov.io/gh/Eduardo-BDMAlves/TemperatureSensors.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/Eduardo-BDMAlves/TemperatureSensors.jl)
 [![ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet)](https://github.com/SciML/ColPrac)
@@ -16,3 +16,7 @@ This package aims to combine different sensors temperature calculations. For exa
 ## Citing
 
 See [`CITATION.bib`](CITATION.bib) for the relevant reference(s).
+
+
+
+ https://img.shields.io/badge/any%20text-you%20like-blue
