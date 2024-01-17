@@ -25,7 +25,7 @@ function temperature(parameter, sensor::Sensor)
 end
 
 function temperature(vec::X, sensor::Sensor) where {X <: AbstractVector}
-    map(T -> temperature(T, sensor), vec)
+    return map(T -> temperature(T, sensor), vec)
 end
 
 @doc """
