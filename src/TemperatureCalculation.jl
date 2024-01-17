@@ -24,7 +24,51 @@ function temperature(parameter, sensor::Sensor)
     return nothing
 end
 
-function temperature(resistance::X, sensor::ITS90PT100) where {X}
+function temperature(vec::X, sensor::Sensor) where {X <: AbstractVector}
+    return map(T -> temperature(T, sensor), vec)
+end
+
+@doc """
+    temperature(resistance::X, sensor::ITS90PT100) where {X}
+
+Function used to calculate the temperature of a **Resistance Temperature Device (RTD)** based on the ITS-90 PT standard. The interpolation equation was developed for the ITS-90 temperature definition and is defined by parts based on the temperature reference adopted. The temperature function applies only the deviation formula given by:
+
+```math
+W-Wr=a_5\\left(W-1\\right)+b_5\\left(W-1\\right)^2
+```
+or
+```math
+W-Wr=a_{10}\\left(W-1\\right)
+```
+
+The first equation is used when the `resistance` provided is smaller than the value of `sensor.ITS90_transition_resistance`, which is the value of the resistance of the RTD at 273.15K.
+
+The value of `W` is defined by:
+
+```math
+W = \\frac{`resistance`}{sensor.RTPW}
+```
+
+The variable `Wr` is computed from the general interpolators defined in `ITS90ScalePTctes`, one interpolator is defined for higher temepratures and another for lower termperatures.
+
+See [ITS-90](https://www.nist.gov/system/files/documents/pml/div685/grp01/ITS-90_metrologia.pdf) paper for further reference.
+
+# Arguments
+
+- `resistence`: The value of the resistance measured in the RTD in ohms.
+- `sensor::ITS90PT100`: The sensor used to measure temperature. Calibration with the parameters from the ITS-90 equations are required.
+
+
+# Example
+```jldoctest
+julia> sensor = ITS90PT100(-2.0386711E-2, 3.3068936E-3, -1.9700442E-02, 100.0121)
+ITS90PT100(-0.020386711, 0.0033068936, -0.019700442, 100.0121, 100.01209954383037)
+
+julia> temperature(sensor.ITS90_transition_resistance, sensor)
+273.1599988338994
+```
+"""
+function temperature(resistance::X, sensor::ITS90PT100) where {X <: AbstractFloat}
     scale = ITS90ScalePTctes()
     if resistance ≥ sensor.ITS90_transition_resistance
         a10 = sensor.a10
@@ -53,4 +97,9 @@ function temperature(resistance::X, sensor::ITS90PT100) where {X}
         throw(OutOfRangeError())
         return X(-1)
     end
+end
+
+function temperature(resistance::X, sensor::ITS90PT100) where {X <: Real}
+    res = AbstractFloat(resistance)
+    return temperature(res, sensor)
 end
