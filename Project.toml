@@ -15,3 +15,6 @@ Measurements = "2"
 Unitful = "1"
 Polynomials = "4"
 julia = "1.9"
+
+[extensions]
+TemperatureSensorMeasurement = "Measurements"
