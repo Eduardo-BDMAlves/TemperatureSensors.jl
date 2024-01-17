@@ -39,4 +39,36 @@ function resistance(temperature::T, params, ctes::ITS90ScalePTctes) where {T}
     end
 end
 
-resistance(temperature, params) = resistance(temperature, params, ITS90ScalePTctes())
+function resistance(temperature, params::NamedTuple)
+    resistance(temperature, params, ITS90ScalePTctes())
+end
+
+function resistance(temperature::T, sensor::ITS90PT100) where {T <: AbstractFloat}
+    ctes = ITS90ScalePTctes()
+    Wr = relative_resistance(temperature, ctes)
+    if 232.3156 ≤ temperature ≤ 273.16
+        a5 = sensor.a5
+        b5 = sensor.b5
+        gamma0 = (a5 - 2b5 - 1) / b5
+        gamma1 = (Wr - a5 + b5) / b5
+        W = 0.5 * (-gamma0 - sqrt(gamma0 * gamma0 - 4gamma1))
+        return W * sensor.RTPW
+    elseif temperature > 273.15
+        a10 = sensor.a10
+        W = (Wr - a10) / (1 - a10)
+        return W * sensor.RTPW
+    else
+        print("Temperature:", temperature)
+        throw(OutOfRangeError())
+        return T(-1)
+    end
+end
+
+function resistance(temperature::T, sensor::ITS90PT100) where {T <: Real}
+    temp = AbstractFloat(temperature)
+    return resistance(temp, sensor)
+end
+
+function resistance(temperatures::T, sensor::ITS90PT100) where {T <: AbstractVector}
+    return map(x -> resistance(x, sensor), temperatures)
+end

@@ -33,4 +33,8 @@ using JET
     @safetestset "ITS90 RTD tests" begin
         include("ITS90ScaleTests.jl")
     end
+
+    @safetestset "Vector Inputs" begin
+        include("VectorInputs.jl")
+    end
 end

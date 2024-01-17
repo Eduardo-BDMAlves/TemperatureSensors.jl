@@ -24,6 +24,10 @@ function temperature(parameter, sensor::Sensor)
     return nothing
 end
 
+function temperature(vec::X, sensor::Sensor) where {X <: AbstractVector}
+    return map(T -> temperature(T, sensor), vec)
+end
+
 @doc """
     temperature(resistance::X, sensor::ITS90PT100) where {X}
 
@@ -64,7 +68,7 @@ julia> temperature(sensor.ITS90_transition_resistance, sensor)
 273.1599988338994
 ```
 """
-function temperature(resistance::X, sensor::ITS90PT100) where {X}
+function temperature(resistance::X, sensor::ITS90PT100) where {X <: AbstractFloat}
     scale = ITS90ScalePTctes()
     if resistance ≥ sensor.ITS90_transition_resistance
         a10 = sensor.a10
@@ -93,4 +97,9 @@ function temperature(resistance::X, sensor::ITS90PT100) where {X}
         throw(OutOfRangeError())
         return X(-1)
     end
+end
+
+function temperature(resistance::X, sensor::ITS90PT100) where {X <: Real}
+    res = AbstractFloat(resistance)
+    return temperature(res, sensor)
 end
