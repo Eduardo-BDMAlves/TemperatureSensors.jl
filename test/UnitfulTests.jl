@@ -25,10 +25,9 @@
 
     @test Rs≈Rs_from_Ts atol=0.1mΩ
 
+    transition_resistance_mΩ = mΩ(sensor.ITS90_transition_resistance * Ω)
+    transition_temperature_C = temperature(transition_resistance_mΩ, sensor, °C)
 
-    transition_resistance_mΩ = mΩ(sensor.ITS90_transition_resistance*Ω)
-    transition_temperature_C = temperature(transition_resistance_mΩ,sensor,°C)
-
-
-    @test ustrip(transition_resistance_mΩ) ≈ ustrip(resistance(transition_temperature_C,sensor,mΩ))
+    @test ustrip(transition_resistance_mΩ) ≈
+          ustrip(resistance(transition_temperature_C, sensor, mΩ))
 end
