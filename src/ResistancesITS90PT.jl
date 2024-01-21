@@ -13,7 +13,7 @@ function relative_resistance(temperature::T, ctes::ITS90ScalePTctes) where {T}
         return s
 
     else
-        @error "Temperature:$temperature"
+        @error "Temperature:$temperature "
         throw(OutOfRangeError())
         return T(-1)
     end
