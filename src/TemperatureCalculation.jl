@@ -104,18 +104,10 @@ function temperature(resistance::X, sensor::ITS90PT100) where {X <: Real}
     return temperature(res, sensor)
 end
 
-
-
-
-
-
-
-
 ## Adding general function for dealing with measurements extension
 
-function temperature_uncertainty(parameter::Any,sensor::Sensor)
+function temperature_uncertainty(parameter::AbstractFloat, sensor::Sensor)
+    T = temperature(parameter, sensor)
 
-    T = temperature(parameter,sensor)
-
-    return [T,sensor.sensor_uncertainty]
+    return [T, sensor.sensor_uncertainty]
 end
