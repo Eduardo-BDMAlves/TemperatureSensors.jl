@@ -103,3 +103,11 @@ function temperature(resistance::X, sensor::ITS90PT100) where {X <: Real}
     res = AbstractFloat(resistance)
     return temperature(res, sensor)
 end
+
+## Adding general function for dealing with measurements extension
+
+function temperature_uncertainty(parameter::AbstractFloat, sensor::Sensor)
+    T = temperature(parameter, sensor)
+
+    return [T, sensor.sensor_uncertainty]
+end

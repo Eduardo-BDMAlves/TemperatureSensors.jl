@@ -37,4 +37,22 @@ function TemperatureSensors.resistance(params::X,
     return map(x -> TemperatureSensors.resistance(x, sensor, out_unit), params)
 end
 
+function TemperatureSensors.temperature_uncertainty(param::X,
+        sensor::Sensor,
+        out_unit = u"K") where {X <: Unitful.ElectricalResistance}
+    param_SI = uconvert(u"Ω", param)
+    param_striped = ustrip(param_SI)
+
+    val = TemperatureSensors.temperature_uncertainty(param_striped, sensor)
+
+    val_unit = val .* u"K"
+    return uconvert.(out_unit, val_unit)
+end
+
+function TemperatureSensors.temperature_uncertainty(params::X,
+        sensor::ITS90PT100,
+        out_unit = u"K") where {X <: AbstractVector}
+    return map(x -> TemperatureSensors.temperature_uncertainty(x, sensor, out_unit), params)
+end
+
 end
