@@ -37,4 +37,8 @@ using JET
     @safetestset "Vector Inputs" begin
         include("VectorInputs.jl")
     end
+
+    @safetestset "Unitful integration" begin
+        include("UnitfulTests.jl")
+    end
 end

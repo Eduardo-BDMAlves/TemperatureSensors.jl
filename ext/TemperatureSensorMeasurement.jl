@@ -1,13 +1,11 @@
 module TemperatureSensorMeasurement
 
-    using TemperatureSensors
-    using Measurements
+using TemperatureSensors
+using Measurements
 
-    function teste()
+function teste()
+    println("OIIII")
+end
 
-        println("OIIII")
-
-    end
-
-    export teste
+export teste
 end

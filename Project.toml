@@ -18,3 +18,4 @@ julia = "1.9"
 
 [extensions]
 TemperatureSensorMeasurement = "Measurements"
+TemperatureSensorUnitful = "Unitful"
