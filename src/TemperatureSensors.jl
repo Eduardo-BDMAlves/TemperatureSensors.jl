@@ -16,4 +16,6 @@ export temperature
 export resistance
 export RTD, PT100, Thermocouple, ThermocoupleJ, Sensor, ITS90PT100
 
+export temperature_uncertainty
+
 end

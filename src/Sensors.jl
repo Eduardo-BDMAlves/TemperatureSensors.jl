@@ -21,11 +21,13 @@ struct ITS90PT100 <: RTD
 
     ITS90_transition_resistance::Real
 
-    function ITS90PT100(a5, b5, a10, RTPW)
+    sensor_uncertainty::Real
+
+    function ITS90PT100(a5, b5, a10, RTPW, uncertainty=0.0)
         params = (a5 = a5, b5 = b5, a10 = a10, RTPW = RTPW)
 
         transition_resistance = resistance(273.16, params)
 
-        new(a5, b5, a10, RTPW, transition_resistance)
+        new(a5, b5, a10, RTPW, transition_resistance, uncertainty)
     end
 end
